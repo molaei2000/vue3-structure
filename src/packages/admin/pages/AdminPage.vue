@@ -1,10 +1,10 @@
 <template>
-<p>Admin</p>
+  <p>Admin</p>
 </template>
 
 <script>
 export default {
-  name: "AdminPage"
+  name: "AdminPage",
 }
 </script>
 

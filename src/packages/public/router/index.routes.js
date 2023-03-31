@@ -2,11 +2,11 @@
 
 export default [
   {
-    path: "/",
+    path: "/landing",
     name: "index",
-    component: () => import("@/packages/public/pages/IndexPages.vue"),
+    component: () => import("../pages/IndexPage.vue"),
     meta: {
-      title: "index",
+      title: "landing",
     },
   },
 ];
