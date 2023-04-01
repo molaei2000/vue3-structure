@@ -3,8 +3,8 @@
 </script>
 <template>
   <v-card>
-    <RouterLink :to="{name:'panel'}">panel</RouterLink>
-    <RouterLink :to="{name:'index'}">index</RouterLink>
+    <AppLink :to="{name:'panel'}">panel</AppLink>
+    <AppLink :to="{name:'index'}">index</AppLink>
     <RouterView />
   </v-card>
 </template>

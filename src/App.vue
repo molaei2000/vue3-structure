@@ -17,7 +17,7 @@ console.log(route);
 <style scoped>
 .slide-enter-active,
 .slide-leave-active {
-  transition: opacity 1s, transform 1s;
+  transition: opacity 0.5s, transform 0.5s;
 }
 
 .slide-enter-from,
