@@ -1,11 +1,9 @@
 async function middlewarePipeline(context, middleware, index) {
   if (!middleware[index]) return context.next;
 
-  const module = await import(`./middleware/${middleware[index]}.js`);
-  const nextMiddleware = module.default;
-  // console.log(module.default, "module");
-  // console.log(index);
-  // console.log(middleware);
+  const nextMiddleware = (await import(`./middleware/${middleware[index]}.js`))
+    .default;
+
   if (!nextMiddleware) {
     return context.next;
   }
