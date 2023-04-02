@@ -1,7 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
 import pageNotFoundRoutes from "./routes/pageNotFound.routes";
 import middlewarePipeline from "./middlewarePipeline";
-import app from "@/tools/App.js"
+import app from "@/tools/App.js";
+import { useAuthentication } from "@/stores/global/auth.store.js";
+
+// const userAuth = useAuthentication();
 
 const context = import.meta.glob("@/packages/**/router/*.js", {
   import: "default",
@@ -49,12 +52,12 @@ router.beforeEach(async (to, from, next) => {
     return next();
   }
   const middleware = to.meta.middleware;
-
+  const store = useAuthentication();
   const context = {
     to,
     from,
     next,
-    // store,
+    store,
   };
   const module = await import(`./middleware/${middleware[0]}.js`);
   return module.default({
@@ -82,9 +85,9 @@ router.beforeEach((to, from, next) => {
     document.title = nearestWithTitle.meta.title + " | " + app.app_name;
 
   // Remove any stale meta tags from the document using the key attribute we set below.
-  Array.from(
-    document.querySelectorAll("[data-vue-router-controlled]")
-  ).map((el) => el.parentNode.removeChild(el));
+  Array.from(document.querySelectorAll("[data-vue-router-controlled]")).map(
+    (el) => el.parentNode.removeChild(el)
+  );
 
   // Skip rendering meta tags if there are none.
   if (!nearestWithMeta) return next();

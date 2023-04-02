@@ -1,12 +1,11 @@
 <script setup>
-import { useRoute } from "vue-router";
-
-const route = useRoute();
-console.log(route);
+import { useAuthentication } from "@/stores/global/auth.store.js"
+const {user} = useAuthentication()
 </script>
 
 <template>
   <p>App</p>
+  {{ user }}
   <RouterView v-slot="{ Component }">
     <transition name="slide" mode="out-in">
       <component :is="Component" :key="$route.path"></component>

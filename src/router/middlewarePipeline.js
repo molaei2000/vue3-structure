@@ -4,10 +4,6 @@ async function middlewarePipeline(context, middleware, index) {
   const nextMiddleware = (await import(`./middleware/${middleware[index]}.js`))
     .default;
 
-  if (!nextMiddleware) {
-    return context.next;
-  }
-
   return async () => {
     const nextPipeline = await middlewarePipeline(
       context,

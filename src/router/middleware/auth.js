@@ -1,13 +1,10 @@
-export default function auth({ next, store, to, from }) {
-  console.log(store, "auth");
-  console.log(to);
-  console.log(from);
-  //   if (!store.getters.auth.loggedIn) {
-  // if (!store) {
-  //   return next({
-  //     name: "auth.login",
-  //   });
-  // }
+export default function auth({ next, store }) {
+  console.log(store.check, "auth");
+  console.log(store.token, "auth");
 
-  return next();
+  if (!store.check) {
+    return next({
+      name: "auth.login",
+    });
+  } else next();
 }
